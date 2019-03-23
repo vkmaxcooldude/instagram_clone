@@ -2,11 +2,13 @@ class ContentDetails {
   int ProfileImageIndex = 0;
   int UserNameIndex = 0;
   int postImageIndex = 0;
+  int postedOnIndex = 0;
 
   void reset(){
     ProfileImageIndex = 0;
     UserNameIndex = 0;
     postImageIndex = 0;
+    postedOnIndex = 0;
   }
 
   String ProfileImage(){
@@ -76,5 +78,25 @@ class ContentDetails {
     ];
     return img[postImageIndex++];
   }
+  int postedOn(){
+    var dateAndTime = [
+      "2019-01-29 09:42:10",
+      "2019-01-29 09:37:01",
+      "2018-07-31 04:42:26",
+      "2018-06-25 10:41:34",
+      "2018-05-25 10:40:08",
+      "2018-05-25 10:36:01",
+      "2018-05-24 01:55:17",
+      "2018-05-24 01:25:12",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ];
 
+    var now = new DateTime.now();
+    var difference = now.difference(DateTime.parse(dateAndTime[postedOnIndex++]));
+    return difference.inDays;
+  }
 }
