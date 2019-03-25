@@ -3,16 +3,17 @@ import 'package:instagram_clone/insta_stories.dart';
 import 'package:instagram_clone/api.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+
 class InstaList extends StatelessWidget {
 
-  final testElements = new ContentDetails(); // Imported from api.dart for content details
-
+  //var testElements = new ContentDetails().loadContent(); // Imported from api.dart for content details
+    //counter = 0;
   @override
   Widget build(BuildContext context) {
+    counter = 0;
     var deviceSize = MediaQuery.of(context).size;
-    testElements.reset();
     return new ListView.builder(
-      itemCount: 7, // The number of contents you want to display on the screen.
+      itemCount: 6, // The number of contents you want to display on the screen.
       itemBuilder: (context, index)=> index == 0 ? new SizedBox(
         child: new InstaStories(),
         height: deviceSize.height * 0.17,
@@ -37,7 +38,7 @@ class InstaList extends StatelessWidget {
                         shape: BoxShape.circle,
                         image: new DecorationImage(
                             fit: BoxFit.fill,
-                            image: new NetworkImage(testElements.ProfileImage())
+                            image: new NetworkImage(testElements.data[counter].userDetails.userImage)
                         ),
                       ),
                     ),
@@ -45,7 +46,7 @@ class InstaList extends StatelessWidget {
                       width: 10.0,
                     ),
                     new Text(
-                      testElements.UserName(),
+                      testElements.data[counter].userDetails.fullName,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     )
                   ],
@@ -59,7 +60,7 @@ class InstaList extends StatelessWidget {
           Flexible(
               fit: FlexFit.loose,
               child: new Image.network(
-                  testElements.postImage(),
+                testElements.data[counter].imgURL,
                 fit: BoxFit.cover,
               )
           ),
@@ -138,7 +139,7 @@ class InstaList extends StatelessWidget {
           //6th Row
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text("Posted ${testElements.postedOn()} days ago...",
+            child: Text("Posted on ${testElements.data[counter++].postedOn}...",
             style: TextStyle(color: Colors.grey),
             ),
           )
