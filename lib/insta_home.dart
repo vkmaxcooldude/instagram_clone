@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/insta_body.dart';
+import 'package:instagram_clone/insta_list.dart';
 
 class InstaHome extends StatelessWidget {
 
@@ -35,7 +36,7 @@ class InstaHome extends StatelessWidget {
           child: new Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              new IconButton(icon: Icon(Icons.home), onPressed: null),
+              new IconButton(icon: Icon(Icons.home), onPressed: () => InstaList().build(context)),
               new IconButton(icon: Icon(Icons.search), onPressed: null),
               new IconButton(icon: Icon(Icons.add_box), onPressed: null),
               new IconButton(icon: Icon(Icons.favorite), onPressed: null),
