@@ -8,6 +8,7 @@ description: Cloning Instagram UI and importing images from an API to display.
 # build by specifying --build-name and --build-number, respectively.
 # Read more about versioning at semver.org.
 version: 1.0.0+1
+author: Vishal Kumar <vishalk.engg@gmail.com>
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
@@ -16,6 +17,7 @@ dependencies:
   http: ^0.12.0
   flutter:
     sdk: flutter
+  cryptoutils: ^0.4.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -26,12 +28,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
+  plugin:
+    androidPackage: software.solid.fluttervlcplayer
+    pluginClass: FlutterVlcPlayerPlugin
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

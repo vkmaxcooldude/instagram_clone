@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:instagram_clone/insta_stories.dart';
 import 'package:instagram_clone/api.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:instagram_clone/vlc_player.dart';
+import 'package:instagram_clone/vlc_player_controller.dart';
 
 class InstaList extends StatelessWidget {
 
@@ -67,13 +68,21 @@ class InstaList extends StatelessWidget {
                       ],
                     ),
                   ),
-                  //2nd Row
-                  Flexible(
+                  //2nd Row displaying photo or video
+                  (testElements.data[counter].mediaType == "photo") ? Flexible(
                       fit: FlexFit.loose,
                       child: new Image.network(
                         testElements.data[counter].imgURL,
                         fit: BoxFit.cover,
                       )
+                  ): Flexible(
+                    fit: FlexFit.loose,
+                    child: VlcPlayer(
+                      defaultWidth: deviceSize.width.round(),
+                      url: testElements.data[counter].imgURL,
+                      controller: VlcPlayerController(),
+                      placeholder: Center(child: CircularProgressIndicator()),
+                    ),
                   ),
                   //3rd Row
                   Padding(
