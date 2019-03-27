@@ -15,6 +15,9 @@ environment:
 
 dependencies:
   http: ^0.12.0
+  chewie: ^0.9.6
+  video_player: ">=0.7.0 <0.11.0"
+  transparent_image: ^1.0.0
   flutter:
     sdk: flutter
   cryptoutils: ^0.4.0
@@ -33,9 +36,9 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-  plugin:
-    androidPackage: software.solid.fluttervlcplayer
-    pluginClass: FlutterVlcPlayerPlugin
+# plugin:
+#   androidPackage: software.solid.fluttervlcplayer
+#   pluginClass: FlutterVlcPlayerPlugin
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

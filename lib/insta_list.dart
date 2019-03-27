@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:instagram_clone/insta_stories.dart';
 import 'package:instagram_clone/api.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:instagram_clone/vlc_player.dart';
-import 'package:instagram_clone/vlc_player_controller.dart';
+import 'package:transparent_image/transparent_image.dart';
+import 'package:chewie/chewie.dart';
+import 'package:video_player/video_player.dart';
 
 class InstaList extends StatelessWidget {
-
-
-  //ContentDetails testElements = new ContentDetails.fromJson(json.decode(ContentDetails().fetchPost()));
   int counter = 0;
   @override
   Widget build(BuildContext context) {
@@ -69,19 +67,27 @@ class InstaList extends StatelessWidget {
                     ),
                   ),
                   //2nd Row displaying photo or video
-                  (testElements.data[counter].mediaType == "photo") ? Flexible(
+                  testElements.data[counter].mediaType == "photo" ? Flexible(
                       fit: FlexFit.loose,
-                      child: new Image.network(
-                        testElements.data[counter].imgURL,
-                        fit: BoxFit.cover,
-                      )
-                  ): Flexible(
+                      child: FadeInImage.memoryNetwork(
+                        placeholder: kTransparentImage,
+                        image: testElements.data[counter].imgURL,
+                      ),
+                  ) :
+                  Flexible(
                     fit: FlexFit.loose,
-                    child: VlcPlayer(
-                      defaultWidth: deviceSize.width.round(),
-                      url: testElements.data[counter].imgURL,
-                      controller: VlcPlayerController(),
-                      placeholder: Center(child: CircularProgressIndicator()),
+                    child: Chewie(
+                      controller: ChewieController(
+                        videoPlayerController: VideoPlayerController.network(testElements.data[counter].imgURL),
+                        allowFullScreen: false,
+                        allowMuting: true,
+                        fullScreenByDefault: false,
+                        looping: true,
+                        //placeholder: CircularProgressIndicator(),
+                        showControls: true,
+                        autoPlay: false,
+                        aspectRatio: 16/9,
+                      ),
                     ),
                   ),
                   //3rd Row
